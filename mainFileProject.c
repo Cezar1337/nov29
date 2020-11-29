@@ -35,7 +35,12 @@ struct packet {
 	int id[1];
 	int data[1024];
 
-};
+    struct addresses {
+	char destinationIP[1024];
+	char sourceIP[1024];
+	}ipAddress;
+
+}packet;
 
 void ProcessPacket(unsigned char* , int);
 void print_ip_header(unsigned char* , int);
@@ -501,6 +506,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 			if (arr_packet[i].id[0] == itemsQ1[frontQ1]) {
 				printf("\nNumer pakietu: %d", i);
 				memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		        strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 			}
 		}
         deQueue();
@@ -516,6 +523,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 			if (arr_packet[i].id[0] == itemsQ2[frontQ2]) {
 				printf("\nNumer pakietu: %d", i);
 				memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		        strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 			}
 		}
 				deQueue2();
@@ -529,6 +538,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 			if (arr_packet[i].id[0] == itemsQ3[frontQ3]) {
 				printf("\nNumer pakietu: %d", i);
 				memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		        strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 			}
 		}  
 				deQueue3();
@@ -543,6 +554,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 			if (arr_packet[i].id[0] == itemsQ3[frontQ3]) {
 				printf("\nNumer pakietu: %d", i);
 				memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		        strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 			}
 		}
 		deQueue3();
@@ -559,6 +572,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 				if (arr_packet[i].id[0] == itemsQ2[frontQ2]) {
 					printf("\nNumer pakietu: %d", i);
 					memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                    strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		            strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 				}
 		}
 				deQueue2();
@@ -570,6 +585,8 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 				if (arr_packet[i].id[0] == itemsQ3[frontQ3]) {
 					printf("\nNumer pakietu: %d", i);
 					memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                    strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		            strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 				}
 			}
 				deQueue3();
@@ -584,11 +601,11 @@ void print_icmp_packet_address(unsigned char* Buffer , int Size) {
 				if (arr_packet[i].id[0] == itemsQ3[frontQ3]) {
 					printf("\nNumer pakietu: %d", i);
 					memcpy(bufferToSend, (char*)&arr_packet[i].data, sizeof(int));
+                    strcpy (packet.ipAddress.destinationIP, inet_ntoa(dest.sin_addr));
+		            strcpy (packet.ipAddress.sourceIP, inet_ntoa(source.sin_addr));
 				}
 			}
 		deQueue3();
-
-       // showDequeuedPacketinfo(Buffer, Size);
 	  	display3();
 	  } // koniec sciagania z class 3
 	  } else {}
